@@ -9,9 +9,10 @@ Source files live on `dev`; `main` contains only the generated website.
 
 - `dev`: scraper, archived JSON and images, site source, tests, build scripts, and CI workflow.
 - `main`: the exact contents of `dist/`, with no Node.js source or scraper files.
-- A push to `dev` must test, validate, build, replace `main` with `dist/`, and deploy that same
-  artifact to GitHub Pages.
-- The workflow uses GitHub Pages' GitHub Actions source. No custom domain is configured.
+- A push to `dev` must test, validate, build, replace `main` with `dist/`, and request a GitHub
+  Pages build from the updated default branch.
+- GitHub Pages publishes from `main` at `/ (root)`; the custom domain is managed in repository
+  settings.
 
 ## Product scope
 
@@ -45,4 +46,5 @@ fonts, gradients, ornamental animation, and imitation of Fandom's advertising-he
 3. Search, view switching, filtering, reset, and incremental loading work in a real browser.
 4. No console errors occur at 320 px, 768 px, or desktop widths.
 5. `main` is reproducible from `dev` and contains only static output.
-6. The workflow deploys only after tests and archive validation pass.
+6. The workflow updates `main` and requests its Pages build only after tests and archive validation
+   pass.

@@ -6,10 +6,8 @@ on:
   workflow_dispatch:
 
 permissions:
-  actions: read
   contents: write
   pages: write
-  id-token: write
 
 concurrency:
   group: github-pages
@@ -18,9 +16,6 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Check out dev
         uses: actions/checkout@v6
@@ -83,14 +78,7 @@ jobs:
             git -C "$publish_dir" push origin HEAD:main
           fi
 
-      - name: Configure GitHub Pages
-        uses: actions/configure-pages@v6
-        with:
-          enablement: true
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v5
-        with:
-          path: dist
-      - name: Deploy GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v5
+      - name: Request GitHub Pages build from main
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST "repos/${GITHUB_REPOSITORY}/pages/builds"

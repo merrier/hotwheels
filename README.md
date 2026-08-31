@@ -10,11 +10,11 @@ searchable static catalogue.
   tests, build scripts, and GitHub Actions workflow.
 - `main` is generated. It contains only the static files produced in `dist/`.
 - Every push to `dev` runs the tests, validates the archive, builds the site, updates `main`, and
-  deploys the same build to GitHub Pages.
+  requests a GitHub Pages build from the updated `main` branch.
 
-For the first remote push, publish `main` before `dev`. In the repository settings, allow GitHub
-Actions to read and write repository contents. The workflow configures GitHub Pages to use GitHub
-Actions and does not require a separate Pages build from `main`.
+GitHub Pages is configured to deploy from `main` at `/ (root)`. Repository Actions must be allowed
+to write contents and Pages. The workflow requests the Pages branch build explicitly after updating
+`main`, because commits made with `GITHUB_TOKEN` do not trigger a Pages build on their own.
 
 ## Refresh the archive
 
