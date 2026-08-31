@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Hot Wheels Virtual Garage 的可检索静态档案，收录实体兑换车与数字藏品。">
+    <meta name="theme-color" content="#181817">
+    <title>Virtual Garage Archive</title>
+    <link rel="stylesheet" href="./styles.css">
+    <script type="module" src="./app.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#catalog">跳到车型目录</a>
+
+    <header class="site-header">
+      <a class="brand" href="./" aria-label="Virtual Garage Archive 首页">
+        <span class="brand-mark" aria-hidden="true">HW</span>
+        <span>
+          <strong>Virtual Garage</strong>
+          <small>Collector archive</small>
+        </span>
+      </a>
+      <a class="source-link" data-source-link href="https://hotwheels.fandom.com/wiki/Virtual_Garage" target="_blank" rel="noopener noreferrer">
+        查看资料来源 <span aria-hidden="true">↗</span>
+      </a>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="page-title">
+        <div class="hero-copy">
+          <p class="eyebrow"><span></span> Hot Wheels digital collectibles</p>
+          <h1 id="page-title">把传奇，<br><em>停进车库。</em></h1>
+          <p class="hero-intro">一份为收藏者整理的 Virtual Garage 独立档案。浏览可兑换实体车、NFTH 稀有款与完整数字藏品目录。</p>
+          <div class="archive-note">
+            <span class="archive-note-label">ARCHIVE</span>
+            <span>数据快照 <time data-scraped-at>读取中</time></span>
+          </div>
+        </div>
+        <dl class="stats" aria-label="档案统计">
+          <div><dt>实体车型</dt><dd data-stat="physical">—</dd></div>
+          <div class="highlight"><dt>NFTH</dt><dd data-stat="nfth">—</dd></div>
+          <div><dt>数字藏品</dt><dd data-stat="collectibles">—</dd></div>
+          <div><dt>归档记录</dt><dd data-stat="archivedRows">—</dd></div>
+        </dl>
+      </section>
+
+      <section class="catalog-section" id="catalog" aria-labelledby="catalog-title">
+        <div class="section-heading">
+          <div>
+            <p class="section-index">01 / COLLECTION</p>
+            <h2 id="catalog-title">车库目录</h2>
+          </div>
+          <div class="view-switch" role="group" aria-label="目录类型">
+            <button class="view-button is-active" type="button" data-view="physical" aria-pressed="true">实体车型</button>
+            <button class="view-button" type="button" data-view="collectibles" aria-pressed="false">全部藏品</button>
+          </div>
+        </div>
+
+        <form class="filters" id="filters" role="search">
+          <label class="search-field">
+            <span>搜索目录</span>
+            <span class="search-control">
+              <span aria-hidden="true">⌕</span>
+              <input id="search" type="search" name="query" placeholder="车型、Toy #、颜色…" autocomplete="off">
+            </span>
+          </label>
+          <label>
+            <span>系列</span>
+            <select id="series" name="series"><option value="">全部系列</option></select>
+          </label>
+          <label>
+            <span>稀有度</span>
+            <select id="rarity" name="rarity"><option value="">全部稀有度</option></select>
+          </label>
+          <button class="reset-button" type="reset">重置筛选</button>
+        </form>
+
+        <div class="result-bar">
+          <p id="result-count" aria-live="polite">正在读取档案…</p>
+          <span aria-hidden="true">LOCAL IMAGE ARCHIVE</span>
+        </div>
+
+        <div class="catalog-status" id="catalog-status" aria-live="polite">
+          <span class="loading-dot"></span> 正在装载车库…
+        </div>
+        <div class="catalog-grid" id="catalog-grid" aria-busy="true"></div>
+        <button class="load-more" id="load-more" type="button" hidden>加载更多</button>
+      </section>
+    </main>
+
+    <footer>
+      <p>Virtual Garage Archive</p>
+      <p>资料与图片来源于 Hot Wheels Wiki，本站仅作收藏资料整理。</p>
+    </footer>
+  </body>
+</html>
