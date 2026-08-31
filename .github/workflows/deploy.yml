@@ -35,6 +35,18 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+      - name: Locate Chrome for browser tests
+        shell: bash
+        run: |
+          chrome_path="$(command -v google-chrome || true)"
+          if [[ -z "$chrome_path" ]]; then
+            chrome_path="$(command -v google-chrome-stable || command -v chromium || true)"
+          fi
+          if [[ -z "$chrome_path" ]]; then
+            echo "Chrome executable not found on the runner" >&2
+            exit 1
+          fi
+          echo "CHROME_PATH=${chrome_path}" >> "$GITHUB_ENV"
       - name: Test
         run: npm test
       - name: Validate archive

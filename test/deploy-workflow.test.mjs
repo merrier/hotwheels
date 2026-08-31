@@ -18,6 +18,8 @@ test('deploy workflow gates a dev push before publishing main and Pages', async 
   assert.match(workflow, /actions\/configure-pages@v6/);
   assert.match(workflow, /actions\/upload-pages-artifact@v5/);
   assert.match(workflow, /actions\/deploy-pages@v5/);
+  assert.match(workflow, /command -v google-chrome/);
+  assert.match(workflow, /CHROME_PATH=.*GITHUB_ENV/);
 
   const commands = ['npm ci', 'npm test', 'npm run validate', 'npm run build', 'push origin HEAD:main'];
   const positions = commands.map((command) => workflow.indexOf(command));
