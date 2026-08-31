@@ -1,0 +1,18 @@
+{
+  "name": "hotwheels-virtual-garage-archive",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:browser-export": "node scripts/build-browser-export.mjs",
+    "scrape": "node scripts/scrape-virtual-garage.mjs",
+    "test": "node --test",
+    "validate": "node scripts/validate-archive.mjs"
+  },
+  "dependencies": {
+    "playwright-core": "1.62.1"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
