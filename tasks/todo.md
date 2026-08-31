@@ -9,4 +9,4 @@
 - [x] Implement the `dev` to `main` and GitHub Pages workflow.
 - [x] Pass unit tests, archive validation, and production build.
 - [x] Pass browser QA at mobile, tablet, and desktop widths.
-- [ ] Commit `dev` and create the generated `main` commit.
+- [x] Commit `dev` and create the generated `main` commit.
