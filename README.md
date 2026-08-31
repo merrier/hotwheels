@@ -1,7 +1,20 @@
 # Hot Wheels Virtual Garage archive
 
 This repository archives the tables and images from the Hot Wheels Wiki
-[Virtual Garage](https://hotwheels.fandom.com/wiki/Virtual_Garage) page for use by a future static site.
+[Virtual Garage](https://hotwheels.fandom.com/wiki/Virtual_Garage) page and turns them into a
+searchable static catalogue.
+
+## Branches and deployment
+
+- `dev` is the source branch. It contains the scraper, archived data and images, website source,
+  tests, build scripts, and GitHub Actions workflow.
+- `main` is generated. It contains only the static files produced in `dist/`.
+- Every push to `dev` runs the tests, validates the archive, builds the site, updates `main`, and
+  deploys the same build to GitHub Pages.
+
+For the first remote push, publish `main` before `dev`. In the repository settings, allow GitHub
+Actions to read and write repository contents. The workflow configures GitHub Pages to use GitHub
+Actions and does not require a separate Pages build from `main`.
 
 ## Refresh the archive
 
@@ -42,7 +55,18 @@ models, select rows from `physical` tables where `values.Rarity === "NFTH"`.
 
 ```bash
 npm test
+npm run validate
+npm run dev
 ```
+
+The local preview is available at `http://127.0.0.1:4173`. Create a production artifact with:
+
+```bash
+npm run build
+```
+
+The website uses native HTML, CSS, and JavaScript modules. It has no CDN or runtime framework, and
+all displayed car images are served from this repository.
 
 Regenerate the normal-browser helper after changing the extractor:
 
